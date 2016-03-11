@@ -41,7 +41,7 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
         assertThat(response.payload, containsString("Hello World!"));
         assertThat(response.payload, containsString("BAM!"));
     }
-
+/*
     @Test
     public void testAcesUp() {
         Response response = makeRequest(
@@ -51,5 +51,5 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
         assertThat(response.payload, containsString("Aces Up"));
         assertThat(response.payload, containsString("columnOfCards"));
     }
-
+*/
 }
