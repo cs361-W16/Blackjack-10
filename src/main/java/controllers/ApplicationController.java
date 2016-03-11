@@ -16,33 +16,39 @@
 
 package controllers;
 
+import models.Game;
+import ninja.Context;
 import ninja.Result;
 import ninja.Results;
 
 import com.google.inject.Singleton;
+import ninja.params.PathParam;
 
 
 @Singleton
 public class ApplicationController {
 
     public Result index() {
-
         return Results.html();
+    }
 
+    public Result blackjack() {
+        return Results.html().template("views/Blackjack/Blackjack.flt.html");
     }
     
-    public Result helloWorldJson() {
-        
-        SimplePojo simplePojo = new SimplePojo();
-        simplePojo.content = "Hello World! Hello Json!";
+    public Result gameGet(){
+        Game g = new Game();
+        g.buildDeck();
+        g.shuffle();
+        g.dealTwo();
 
-        return Results.json().render(simplePojo);
-
+        return Results.json().render(g);
     }
-    
-    public static class SimplePojo {
 
-        public String content;
-        
+    public Result dealPost(Context context, Game g) {
+        if(context.getRequestPath().contains("deal")){
+            g.dealTwo();
+        }
+        return Results.json().render(g);
     }
 }
