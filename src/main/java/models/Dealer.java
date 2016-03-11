@@ -6,7 +6,6 @@ package models;
 
 
 public class Dealer extends Actor{
-    void
     void play(int UserStay){
         if(UserStay == 1){
 
