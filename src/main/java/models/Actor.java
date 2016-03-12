@@ -1,12 +1,15 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 /**
  * Created by cody on 3/11/16.
  */
 public class Actor {
-    private java.util.List<Card> hand = new ArrayList<>();
+
+    public java.util.List<Card> hand = new ArrayList<>();
 
     void addCard(Card c){
         hand.add(c);
@@ -18,5 +21,9 @@ public class Actor {
 
     Card getTop(){
         return hand.get(hand.size() - 1);
+    }
+
+    void resetHand() {
+        hand = new ArrayList<>();
     }
 }

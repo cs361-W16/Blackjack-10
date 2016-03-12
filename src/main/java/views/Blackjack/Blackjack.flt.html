@@ -93,7 +93,11 @@ div.transbox p {
         </td>
 </table>
 
-<button class="button button4" id="dealButton">Deal</button>
+<button class="button button4" id="dealButton">Hit</button>
+
+<button class="button button4" id="stayButton">Stay</button>
+
+<button class="button button4" id="foldButton">Fold</button>
 
 <BR><button class="button button4" id="newGame">New Game</button>
 
@@ -125,7 +129,33 @@ game = data;
 $("#dealButton").click(function(){
 $.ajax({
   type: "POST",
-  url: "/dealGame",
+  url: "/hitPlayer",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+$("#stayButton").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/stayPlayer",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+$("#foldButton").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/foldPlayer",
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;

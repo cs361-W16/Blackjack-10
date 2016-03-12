@@ -45,6 +45,27 @@ public class ApplicationController {
         return Results.json().render(g);
     }
 
+    public Result hitPlayer(Context context, Game g) {
+        if(context.getRequestPath().contains("hitPlayer")){
+            g.hit(0);
+        }
+        return Results.json().render(g);
+    }
+
+    public Result stayPlayer(Context context, Game g) {
+        if(context.getRequestPath().contains("stayPlayer")){
+            g.stay(0);
+        }
+        return Results.json().render(g);
+    }
+
+    public Result foldPlayer(Context context, Game g) {
+        if(context.getRequestPath().contains("foldPlayer")){
+            g.fold();
+        }
+        return Results.json().render(g);
+    }
+
     public Result dealPost(Context context, Game g) {
         if(context.getRequestPath().contains("deal")){
             g.dealTwo();

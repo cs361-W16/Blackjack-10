@@ -31,4 +31,9 @@ public class Deck {
         deck.remove(deck.size()-1);
         return c;
     }
+
+    public void resetDeck () {
+        deck = new ArrayList<>();
+        buildDeck();
+    }
 }

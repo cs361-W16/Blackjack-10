@@ -25,4 +25,13 @@ public class testDeck {
         assertEquals("14Spades", c.toString());
     }
 
+    @Test
+    public void testResetDeck() {
+        Deck d = new Deck();
+        d.buildDeck();
+        d.shuffle();
+        d.resetDeck();
+        Card c = d.deal();
+        assertEquals("14Spades",c.toString());
+    }
 }
