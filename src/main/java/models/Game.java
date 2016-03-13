@@ -10,17 +10,15 @@ import java.util.Random;
 public class Game {
 
     public Deck d;
-    public Actor p;  //The player
+    public Player p;  //The player
     public Dealer e; //The dealer
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
 
     public Game(){
 
         d = new Deck();
-        p = new Actor();
+        p = new Player();
         e = new Dealer();
-        p.TotalMoney = 100;
-        p.Bet = 0;
 
         cols.add(new ArrayList<Card>());
         cols.add(new ArrayList<Card>());
@@ -41,17 +39,12 @@ public class Game {
 
     }
 
-    public void addBet(int bet) {
-        if(p.Bet > 0) {             //Ensures that the hand cannot progress until the player puts up the ante
-            p.Bet = p.Bet + bet;
-        }
-    }
+    public void addBet(int addbet) {p.addBet(addbet);}
+
     public void doubleDown() {
-        if(p.Bet > 0) {         //Ensures nothing can be done before the ante
-            p.Bet = p.Bet + p.Bet;
-            hit(0);
-            stay(0);
-        }
+        p.doubleDown();
+        hit(0);
+        stay(0);
     }
     //Person = 0 mean Player, Person = 1 means Dealer
     public void hit(int Person) {
