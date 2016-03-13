@@ -35,9 +35,10 @@ public class testGame {
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
+        g.p.Bet=10;
         g.dealTwo();
         assertEquals(2,g.cols.get(0).size());
-        assertEquals(2,g.cols.get(1).size());
+        assertEquals(1,g.cols.get(1).size());
     }
 
     @Test
@@ -45,15 +46,16 @@ public class testGame {
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
+        g.p.Bet=10;
         g.dealTwo();
 
         assertEquals(2,g.cols.get(0).size());
-        assertEquals(2,g.cols.get(1).size());
+        assertEquals(1,g.cols.get(1).size());
 
         g.dealTwo();
 
         assertEquals(4,g.cols.get(0).size());
-        assertEquals(4,g.cols.get(1).size());
+        assertEquals(2,g.cols.get(1).size());
     }
 
     @Test
@@ -61,6 +63,7 @@ public class testGame {
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
+        g.p.Bet=10;
         g.hit(0);
         assertEquals(1,g.cols.get(0).size());
         g.hit(1);
@@ -72,6 +75,7 @@ public class testGame {
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
+        g.p.Bet=10;
         g.dealTwo();
         java.util.List<Card> hand = g.p.getHand();
         g.stay(0);
@@ -83,6 +87,7 @@ public class testGame {
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
+        g.p.Bet=10;
         g.dealTwo();
         java.util.List<Card> hand = g.p.getHand();
         g.fold();
@@ -94,6 +99,7 @@ public class testGame {
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
+        g.p.Bet=10;
         g.dealTwo();
         java.util.List<Card> hand = g.p.getHand();
         g.nextHand();
@@ -105,6 +111,7 @@ public class testGame {
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
+        g.p.Bet=10;
         g.dealTwo();
         assertEquals(true, g.colHasCards(0));
     }
@@ -113,6 +120,7 @@ public class testGame {
     public void testGetTopCard(){
         Game g = new Game();
         g.buildDeck();
+        g.p.Bet=10;
         g.hit(0);
         assertEquals("14Spades", g.getTopCard(0).toString());
     }
@@ -125,5 +133,50 @@ public class testGame {
         Card c = d.deal();
         g.addCardToCol(0,c);
         assertEquals("14Spades", g.getTopCard(0).toString());
+    }
+
+    @Test
+    public void testBetting(){
+        Game g = new Game();
+        assertEquals(0,g.p.Bet);
+        g.p.Bet = 2;
+        g.addBet(5);
+        g.addBet(50);
+        g.addBet(100);
+        assertEquals(157,g.p.Bet);
+    }
+
+    @Test
+    public void testDoubleDown(){
+        Game g = new Game();
+        g.buildDeck();
+        g.shuffle();
+        assertEquals(0,g.p.Bet);
+        assertEquals(100,g.p.TotalMoney);
+        g.p.Bet = 2;
+        g.addBet(5);
+        g.doubleDown();
+        assertTrue((g.p.TotalMoney == 114) || (g.p.TotalMoney == 86));
+    }
+
+    @Test
+    public void testAnte(){
+        Game g = new Game();
+        g.buildDeck();
+        g.shuffle();
+        g.hit(1);
+        g.hit(0);
+        assertEquals(false, g.colHasCards(0));
+        assertEquals(false, g.colHasCards(1));
+        g.dealTwo();
+        assertEquals(false, g.colHasCards(0));
+        assertEquals(false, g.colHasCards(1));
+        g.addBet(10);
+        assertEquals(0,g.p.Bet);
+        g.anteStart();
+        g.addBet(10);
+        assertEquals(true, g.colHasCards(0));
+        assertEquals(true, g.colHasCards(1));
+        assertEquals(12,g.p.Bet);
     }
 }
