@@ -44,7 +44,7 @@ public class ApplicationController {
 
         return Results.json().render(g);
     }
-    public Result playerBet(Context context, int Bet, Game g){
+    public Result playerBet(Context context, @PathParam("bet1") int Bet, Game g){
         if(context.getRequestPath().contains("playerBet")){
             g.addBet(Bet);
         }

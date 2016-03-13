@@ -48,6 +48,9 @@ div.transbox p {
     </style>
 </head>
 
+
+<h1 style="color:blue;" id = "TotalMoney">Total Money: 0</h1>
+<h1 style="color:blue;" id = "Bet">Current Bet: 0</h1>
 <table>
 
     <tr class="title">
@@ -93,10 +96,10 @@ div.transbox p {
         </td>
 </table>
 <button class="button button4" id="anteButton">Ante</button>
-<button class="button button4" id="bet5Button">Bet</button>
-<button class="button button4" id="bet10Button">Bet</button>
-<button class="button button4" id="bet26Button">Bet</button>
-<button class="button button4" id="doubleDownButton">Bet</button>
+<button class="button button4" id="bet5Button">Bet $5</button>
+<button class="button button4" id="bet10Button">Bet $10</button>
+<button class="button button4" id="bet25Button">Bet $25</button>
+<button class="button button4" id="doubleDownButton">Double Down</button>
 
 <button class="button button4" id="dealButton">Hit</button>
 
@@ -112,6 +115,8 @@ var game;
 
 function display(game) {
 console.log(game);
+$( '#Bet' ).html("Bet: " + game.p.Bet);
+$( '#TotalMoney' ).html("Total Money: " + game.p.TotalMoney);
 
 $( '.columnOfCards .cardLocation' ).html("");
 
@@ -130,10 +135,10 @@ display(data);
 game = data;
 });
 
-function playerBet(bet){
+function playerBet(bet1){
 $.ajax({
 type: "POST",
-url: "/playerBet"+bet,
+url: "/playerBet/"+bet1,
 data: JSON.stringify(game),
 success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
 game = data;
@@ -141,6 +146,7 @@ display(data);},
 contentType:"application/json; charset=utf-8",
 dataType:"json",
 });
+}
 
 $("#dealButton").click(function(){
 $.ajax({
