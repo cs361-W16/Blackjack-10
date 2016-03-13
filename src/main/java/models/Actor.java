@@ -9,8 +9,6 @@ import java.util.Random;
  */
 public class Actor {
 
-    public int TotalMoney;
-    public int Bet;
     public java.util.List<Card> hand = new ArrayList<>();
 
     void addCard(Card c){
