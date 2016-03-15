@@ -41,7 +41,7 @@ div.transbox p {
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <link rel="stylesheet" href="/resources/demos/style.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"-->
     <style>
         #draggable { width: 100px; height: 20px; padding: 0.5em; }
         #move0, #move1, #move2, #move3 { width: 100px; height: 40px; padding: 0.5em; float: left; margin: 10px; }
@@ -129,6 +129,7 @@ $( '.columnOfCards .cardLocation' ).html("");
     });
 
 }
+$('cardLocation l0').hide();
 
 $.getJSON("http://localhost:8080/game", function( data ) {
 display(data);
@@ -162,6 +163,8 @@ $.ajax({
 });
 
 $("#stayButton").click(function(){
+
+$('cardLocation l0').show();
 $.ajax({
   type: "POST",
   url: "/stayPlayer",
