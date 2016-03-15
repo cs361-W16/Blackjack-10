@@ -5,7 +5,8 @@ import static org.junit.Assert.*;
  * Created by cody on 3/14/16.
  */
 public class testDealer{
-    void testDealerStop(){
+    @Test
+    public void testDealerStop(){
         Dealer d = new Dealer();
         Card c = new Card(1, Suit.Spades);
 
@@ -17,7 +18,8 @@ public class testDealer{
         d.addCard(c);
         assertEquals(d.play(), 0);
     }
-    void testDealerPlay(){
+    @Test
+    public void testDealerPlay(){
         Dealer d = new Dealer();
         Card c = new Card(1, Suit.Spades);
 
