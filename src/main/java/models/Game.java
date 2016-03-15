@@ -13,6 +13,8 @@ public class Game {
     public Player p;  //The player
     public Dealer e; //The dealer
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
+    public boolean playerStatus;
+    public boolean dealerStatus;
 
     public Game(){
 
@@ -55,8 +57,9 @@ public class Game {
             if (Person == 1 && e.play() == 1) {
                     e.addCard(c);
                     if(e.sumHand() > 21){
+                        playerStatus = true;
+                        dealerStatus = false;
 
-                        //player win
                     }
             }
 
@@ -85,7 +88,29 @@ public class Game {
     //Determine winner and add or subtract pot from winnings
     public void getWinner() {
     //Nawaf should fill this in
-        p.TotalMoney = p.TotalMoney + p.Bet;    //feel free to get rid of this when you implement. i just needed it gor a test - Charles
+        //p.TotalMoney = p.TotalMoney + p.Bet;    //feel free to get rid of this when you implement. i just needed it gor a test - Charles
+
+        if (p.sumHand() > e.sumHand()){
+            if (p.sumHand() < 22){
+                playerStatus = true;
+                dealerStatus = false;
+            }
+            else{
+                dealerStatus = true;
+                playerStatus = false;
+            }
+        }
+        else{
+            if (e.sumHand() > 21){
+                playerStatus = true;
+                dealerStatus = false;
+            }
+            else {
+                dealerStatus = true;
+                playerStatus = false;
+            }
+        }
+
     }
 
     //Add used cards back to deck and set up next hand
