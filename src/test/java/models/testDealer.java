@@ -1,6 +1,8 @@
 package models;
 
 import static org.junit.Assert.*;
+
+import org.junit.Test;
 /**
  * Created by cody on 3/14/16.
  */
