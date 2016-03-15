@@ -16,6 +16,7 @@ public class Game {
     public boolean playerStatus;
     public boolean dealerStatus;
 
+
     public Game(){
 
         d = new Deck();
@@ -24,7 +25,35 @@ public class Game {
 
         cols.add(new ArrayList<Card>());
         cols.add(new ArrayList<Card>());
+        //another one for split hand array
+        //cols.add(new ArrayList<Card>());
+        //check to see if those two cards are the same, first rank and  then suit
+        //if (ArrayList[0].rank == ArrayList[1].rank){
+        //    if(ArrayList[0].suit == ArrayList[1].suit){
+                //move the second card to the Split List
+        //        cols.move(ArrayList<Card>, SplitList<Card>);
+        //    }
+            
+        //}
     }
+    //moving card from array list to split list
+    /**public void move(ArrayList<Card>, SplitList<Card>) {
+        Card cardToMove = getCard(ArrayList[1]);
+        this.removeCardFromCol(ArrayList[1]);
+        this.addCardToCol(SplitList[0],cardToMove);
+    }
+    //Getting the second card
+    private Card getCard(ArrayList<Card>) {
+        return this.cols.get(ArrayList[1]).get(this.cols.get(ArrayList[1]).size()-1);
+    }
+    //Adding card to split list
+    private void addCardToCol(SplitList<Card>, Card cardToMove) {
+        cols.get(SplitList<Card>).add(cardToMove);
+    }
+    //Removing Card from array list
+    private void removeCardFromCol(ArrayList<Card>) {
+        this.cols.get(ArrayList[1]).remove(this.cols.get(ArrayList[1]).size()-1);
+    }**/
 
     public void buildDeck() {
         d.buildDeck();
@@ -65,6 +94,30 @@ public class Game {
             else p.addCard(c);
         }
     }
+    
+    /**
+     * Created by Natasha
+     */
+    //public interface Player {
+        //public int total();
+        //void hit(Card card); // returns hand total
+        //public Player split(); // produces two hands
+    //}
+    //public int total(int Person){
+    //    if (cols.get(Person).card.value == cols.get(Person).card2.value)
+    //          return TRUE;
+    //}
+
+    //@Override
+    //public Player split() {
+        // Check if hand can be split. Need to make sure that the two cards same value. player can only have two cards
+        //total = total / 2;
+
+    //    Hand splitHand = new Hand(new Card.value);
+    //    splitHand.hit(); // Add a card to the splitHand
+    //    hit(); // add new card to the current hand
+    //    return splitHand;
+    //}
 
     public void stay(int Person) {
        if (p.Bet > 0) {             //Ensures that the hand cannot progress until the player puts up the ante
