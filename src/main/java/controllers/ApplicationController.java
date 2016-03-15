@@ -40,8 +40,53 @@ public class ApplicationController {
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
-        g.dealTwo();
 
+
+        return Results.json().render(g);
+    }
+    public Result playerBet(Context context, @PathParam("bet1") int Bet, Game g){
+        if(context.getRequestPath().contains("playerBet")){
+            g.addBet(Bet);
+        }
+        return Results.json().render(g);
+    }
+
+    public Result ante(Context context, Game g){
+        if(context.getRequestPath().contains("ante")){
+            if(g.p.Bet == 0){                 //ensures ante can only be paid once at the beginning of a hand
+                g.anteStart();
+            }
+        }
+        return Results. json().render(g);
+    }
+
+    public Result doubleDown(Context context, Game g){
+        if(context.getRequestPath().contains("doubleDown")){
+            if(g.p.Bet > 0){
+                g.doubleDown();
+            }
+        }
+        return Results.json().render(g);
+    }
+
+    public Result hitPlayer(Context context, Game g) {
+        if(context.getRequestPath().contains("hitPlayer")){
+            g.hit(0);
+        }
+        return Results.json().render(g);
+    }
+
+    public Result stayPlayer(Context context, Game g) {
+        if(context.getRequestPath().contains("stayPlayer")){
+            g.stay(0);
+        }
+        return Results.json().render(g);
+    }
+
+    public Result foldPlayer(Context context, Game g) {
+        if(context.getRequestPath().contains("foldPlayer")){
+            g.fold();
+        }
         return Results.json().render(g);
     }
 

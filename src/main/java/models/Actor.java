@@ -1,6 +1,8 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 /**
  * Created by cody on 3/11/16.
@@ -20,11 +22,14 @@ abstract class Actor {
         return hand.get(hand.size() - 1);
     }
 
-    int sumHand(){
+    int sumHand() {
         int total = 0;
-        for (Card temp:hand) {
+        for (Card temp : hand) {
             total += temp.getValue();
         }
         return total;
+    }
+    void resetHand(){
+        hand = new ArrayList<>();
     }
 }
