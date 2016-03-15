@@ -1,0 +1,244 @@
+<style>
+    div.transbox {
+  margin: 30px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  opacity: 0.6;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+div.transbox p {
+  margin: 5%;
+  font-weight: bold;
+  color: #000000;
+}
+
+    .button {
+    background-color: #D3D3D3; /* light grey */
+    border: none;
+    color: ;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
+    .button4 {border-radius: 12px;}
+</style>
+<div class="transbox">
+    <h1 style="color:black;">Blackjack</h1>
+</div>
+
+<link href="/assets/css/Blackjack.css" rel="stylesheet">
+<script type="text/javascript" src="/assets/webjars/jquery/2.1.3/jquery.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery UI Draggable - Default functionality</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <style>
+        #draggable { width: 100px; height: 20px; padding: 0.5em; }
+        #move0, #move1, #move2, #move3 { width: 100px; height: 40px; padding: 0.5em; float: left; margin: 10px; }
+    </style>
+</head>
+
+
+<h1 style="color:blue;" id = "TotalMoney">Total Money: 0</h1>
+<h1 style="color:blue;" id = "Bet">Current Bet: 0</h1>
+<table>
+
+    <tr class="title">
+        <td>Player</td>
+        <td >Dealer</td>
+    </tr>
+
+    <tr><td class="columnOfCards" id="c0">
+        <table>
+            <tr><td class="cardLocation l0"></td></tr>
+            <tr><td class="cardLocation l1"></td></tr>
+            <tr><td class="cardLocation l2"></td></tr>
+            <tr><td class="cardLocation l3"></td></tr>
+            <tr><td class="cardLocation l4"></td></tr>
+            <tr><td class="cardLocation l5"></td></tr>
+            <tr><td class="cardLocation l6"></td></tr>
+            <tr><td class="cardLocation l7"></td></tr>
+            <tr><td class="cardLocation l8"></td></tr>
+            <tr><td class="cardLocation l9"></td></tr>
+            <tr><td class="cardLocation l10"></td></tr>
+            <tr><td class="cardLocation l11"></td></tr>
+            <tr><td class="cardLocation l12"></td></tr>
+            <tr><td class="cardLocation l13"></td></tr>
+        </table>
+    </td>
+        <td class="columnOfCards" id="c1">
+            <table>
+                <tr><td class="cardLocation l0"></td></tr>
+                <tr><td class="cardLocation l1"></td></tr>
+                <tr><td class="cardLocation l2"></td></tr>
+                <tr><td class="cardLocation l3"></td></tr>
+                <tr><td class="cardLocation l4"></td></tr>
+                <tr><td class="cardLocation l5"></td></tr>
+                <tr><td class="cardLocation l6"></td></tr>
+                <tr><td class="cardLocation l7"></td></tr>
+                <tr><td class="cardLocation l8"></td></tr>
+                <tr><td class="cardLocation l9"></td></tr>
+                <tr><td class="cardLocation l10"></td></tr>
+                <tr><td class="cardLocation l11"></td></tr>
+                <tr><td class="cardLocation l12"></td></tr>
+                <tr><td class="cardLocation l13"></td></tr>
+            </table>
+        </td>
+</table>
+<button class="button button4" id="anteButton">Ante</button>
+<button class="button button4" id="bet5Button">Bet $5</button>
+<button class="button button4" id="bet10Button">Bet $10</button>
+<button class="button button4" id="bet25Button">Bet $25</button>
+<button class="button button4" id="doubleDownButton">Double Down</button>
+
+<button class="button button4" id="dealButton">Hit</button>
+
+<button class="button button4" id="stayButton">Stay</button>
+
+<button class="button button4" id="foldButton">Fold</button>
+
+<BR><button class="button button4" id="newGame">New Game</button>
+
+<script>
+
+var game;
+
+function display(game) {
+console.log(game);
+$( '#Bet' ).html("Bet: " + game.p.Bet);
+$( '#TotalMoney' ).html("Total Money: " + game.p.TotalMoney);
+
+$( '.columnOfCards .cardLocation' ).html("");
+
+ $.each(game.cols[0], function( key, val ) {
+        $( '#c0 .l'+key ).html(val.value + val.suit);
+    });
+
+ $.each(game.cols[1], function( key, val ) {
+        $( '#c1 .l'+key ).html(val.value + val.suit);
+    });
+
+}
+
+$.getJSON("http://localhost:8080/game", function( data ) {
+display(data);
+game = data;
+});
+
+function playerBet(bet1){
+$.ajax({
+type: "POST",
+url: "/playerBet/"+bet1,
+data: JSON.stringify(game),
+success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+game = data;
+display(data);},
+contentType:"application/json; charset=utf-8",
+dataType:"json",
+});
+}
+
+$("#dealButton").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/hitPlayer",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+$("#stayButton").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/stayPlayer",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+$("#anteButton").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/ante",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+$("#doubleDownButton").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/doubleDown",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+$("#bet5Button").click(function(){
+    playerBet(5);
+});
+$("#bet10Button").click(function(){
+    playerBet(10);
+});
+$("#bet25Button").click(function(){
+    playerBet(25);
+});
+
+$("#foldButton").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/foldPlayer",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+$("#newGame").click(function(){
+$.ajax({
+  type: "GET",
+  url: "/game",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+
+</script>
+
+
+</body>
+</html>
+
