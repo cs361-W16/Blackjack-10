@@ -57,8 +57,7 @@ public class Game {
             if (Person == 1 && e.play() == 1) {
                     e.addCard(c);
                     if(e.sumHand() > 21){
-                        playerStatus = true;
-                        dealerStatus = false;
+                        getWinner();
 
                     }
             }
