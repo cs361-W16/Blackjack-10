@@ -61,11 +61,11 @@ public class Game {
         /**
      * Created by Natasha
      */
-    public interface Player {
+    //public interface Player {
         //public int total();
         //void hit(Card card); // returns hand total
         //public Player split(); // produces two hands
-    }
+    //}
     //public int total(int Person){
     //    if (cols.get(Person).card.value == cols.get(Person).card2.value)
     //          return TRUE;
