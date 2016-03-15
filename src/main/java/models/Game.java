@@ -61,26 +61,26 @@ public class Game {
         /**
      * Created by Natasha
      */
-    public interface Hand {
+    public interface Player {
         //public int total();
         //void hit(Card card); // returns hand total
-        public Hand split(); // produces two hands
+        //public Player split(); // produces two hands
     }
     //public int total(int Person){
     //    if (cols.get(Person).card.value == cols.get(Person).card2.value)
     //          return TRUE;
     //}
 
-    @Override
-    public Hand split() {
+    //@Override
+    //public Player split() {
         // Check if hand can be split. Need to make sure that the two cards same value. player can only have two cards
         //total = total / 2;
 
-        Hand splitHand = new Hand(new Card(total));
-        splitHand.hit(); // Add a card to the splitHand
-        hit(); // add new card to the current hand
-        return splitHand;
-    }
+    //    Hand splitHand = new Hand(new Card.value);
+    //    splitHand.hit(); // Add a card to the splitHand
+    //    hit(); // add new card to the current hand
+    //    return splitHand;
+    //}
 
     public void stay(int Person) {
        if (p.Bet > 0) {             //Ensures that the hand cannot progress until the player puts up the ante
