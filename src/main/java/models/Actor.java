@@ -8,7 +8,7 @@ import java.util.Random;
  * Created by cody on 3/11/16.
  */
 abstract class Actor {
-    private java.util.List<Card> hand = new ArrayList<>();
+    public java.util.List<Card> hand = new ArrayList<>();
 
     void addCard(Card c){
         hand.add(c);

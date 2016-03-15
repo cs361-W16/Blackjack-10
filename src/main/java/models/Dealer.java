@@ -11,12 +11,7 @@ import java.util.ArrayList;
 
 public class Dealer extends Actor{
     int play(){
-        java.util.List<Card> temp = getHand();
-        int sum = 0;
-        for(int i = 1; i < temp.size(); i++){
-            sum += temp.get(i).getValue();
-        }
-        if(sum < 17){
+        if(sumHand() < 17){
             return 1;
         }
         else {

@@ -36,7 +36,6 @@ public class Game {
             hit(0);             //two for the player, one for the dealer. easier than giving the dealer two and trying to hide one
             hit(0);
             hit(1);
-            hit(1);
 
     }
 
@@ -67,9 +66,10 @@ public class Game {
 
     public void stay(int Person) {
        if (p.Bet > 0) {             //Ensures that the hand cannot progress until the player puts up the ante
-           while(e.sumHand() < 17){
+           while(e.play() < 17){
                hit(1);
            }
+           hit(1); //This makes up for the first one not being there
            getWinner();
            nextHand();
        }

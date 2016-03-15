@@ -129,7 +129,6 @@ $( '.columnOfCards .cardLocation' ).html("");
     });
 
 }
-$('cardLocation l0').hide();
 
 $.getJSON("http://localhost:8080/game", function( data ) {
 display(data);
@@ -163,8 +162,6 @@ $.ajax({
 });
 
 $("#stayButton").click(function(){
-
-$('cardLocation l0').show();
 $.ajax({
   type: "POST",
   url: "/stayPlayer",
