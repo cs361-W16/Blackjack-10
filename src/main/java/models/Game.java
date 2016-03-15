@@ -25,7 +25,7 @@ public class Game {
         cols.add(new ArrayList<Card>());
         cols.add(new ArrayList<Card>());
         //another one for split hand array
-        cols.add(new ArrayList<Card>());
+        //cols.add(new ArrayList<Card>());
         //check to see if those two cards are the same, first rank and  then suit
         //if (ArrayList[0].rank == ArrayList[1].rank){
         //    if(ArrayList[0].suit == ArrayList[1].suit){
