@@ -52,7 +52,13 @@ public class Game {
             Card c = d.deal();
             cols.get(Person).add(c);
 
-            if (Person == 1) e.addCard(c);
+            if (Person == 1 && e.play() == 1) {
+                    e.addCard(c);
+                    if(e.sumHand() > 21){
+
+                        //player win
+                    }
+            }
 
             else p.addCard(c);
         }
@@ -60,7 +66,10 @@ public class Game {
 
     public void stay(int Person) {
        if (p.Bet > 0) {             //Ensures that the hand cannot progress until the player puts up the ante
-           playDealer();
+           while(e.play() < 17){
+               hit(1);
+           }
+           hit(1); //This makes up for the first one not being there
            getWinner();
            nextHand();
        }
@@ -71,10 +80,6 @@ public class Game {
         p.resetHand();
         getWinner();
         nextHand();
-    }
-    //Behavior for dealer
-    public void playDealer() {
-    //Cody should fill this in
     }
 
     //Determine winner and add or subtract pot from winnings

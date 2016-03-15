@@ -10,11 +10,13 @@ import java.util.ArrayList;
 
 
 public class Dealer extends Actor{
-/*
-    void play(int UserStay){
-        if(UserStay == 1){
-
+    int play(){
+        if(sumHand() < 17){
+            return 1;
+        }
+        else {
+            return 0;
         }
     }
-*/
+
 }
