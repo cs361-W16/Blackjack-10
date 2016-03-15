@@ -7,8 +7,7 @@ import java.util.Random;
 /**
  * Created by cody on 3/11/16.
  */
-public class Actor {
-
+abstract class Actor {
     public java.util.List<Card> hand = new ArrayList<>();
 
     void addCard(Card c){
@@ -23,7 +22,14 @@ public class Actor {
         return hand.get(hand.size() - 1);
     }
 
-    void resetHand() {
+    int sumHand() {
+        int total = 0;
+        for (Card temp : hand) {
+            total += temp.getValue();
+        }
+        return total;
+    }
+    void resetHand(){
         hand = new ArrayList<>();
     }
 }

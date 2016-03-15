@@ -13,6 +13,8 @@ public class Game {
     public Player p;  //The player
     public Dealer e; //The dealer
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
+    public boolean playerStatus;
+    public boolean dealerStatus;
 
     public Game(){
 
@@ -52,7 +54,13 @@ public class Game {
             Card c = d.deal();
             cols.get(Person).add(c);
 
-            if (Person == 1) e.addCard(c);
+            if (Person == 1 && e.play() == 1) {
+                    e.addCard(c);
+                    if(e.sumHand() > 21){
+                        getWinner();
+
+                    }
+            }
 
             else p.addCard(c);
         }
@@ -60,7 +68,10 @@ public class Game {
 
     public void stay(int Person) {
        if (p.Bet > 0) {             //Ensures that the hand cannot progress until the player puts up the ante
-           playDealer();
+           while(e.play() < 17){
+               hit(1);
+           }
+           hit(1); //This makes up for the first one not being there
            getWinner();
            nextHand();
        }
@@ -72,15 +83,38 @@ public class Game {
         getWinner();
         nextHand();
     }
-    //Behavior for dealer
-    public void playDealer() {
-    //Cody should fill this in
-    }
 
     //Determine winner and add or subtract pot from winnings
     public void getWinner() {
-    //Nawaf should fill this in
-        p.TotalMoney = p.TotalMoney + p.Bet;    //feel free to get rid of this when you implement. i just needed it gor a test - Charles
+
+        //p.TotalMoney = p.TotalMoney + p.Bet;    //feel free to get rid of this when you implement. i just needed it gor a test - Charles
+
+        if (p.sumHand() > e.sumHand()){
+            if (p.sumHand() < 22){
+                playerStatus = true;
+                dealerStatus = false;
+                p.TotalMoney = p.TotalMoney + p.Bet;
+            }
+            else{
+                dealerStatus = true;
+                playerStatus = false;
+                p.TotalMoney = p.TotalMoney - p.Bet;
+
+            }
+        }
+        else{
+            if (e.sumHand() > 21){
+                playerStatus = true;
+                dealerStatus = false;
+                p.TotalMoney = p.TotalMoney + p.Bet;
+            }
+            else {
+                dealerStatus = true;
+                playerStatus = false;
+                p.TotalMoney = p.TotalMoney - p.Bet;
+            }
+        }
+
     }
 
     //Add used cards back to deck and set up next hand

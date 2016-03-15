@@ -179,4 +179,20 @@ public class testGame {
         assertEquals(true, g.colHasCards(1));
         assertEquals(12,g.p.Bet);
     }
+    @Test
+    public void testGameWinner(){
+        Game g = new Game();
+        g.buildDeck();
+        g.shuffle();
+        g.hit(1);
+        g.hit(1);
+        g.hit(1);
+        g.hit(1);
+        g.hit(1);
+        g.hit(0);
+        g.getWinner();
+        assertEquals(false,g.playerStatus);
+
+
+    }
 }

@@ -13,7 +13,7 @@ public class testActor {
 
     @Test
     public void testAddCard() {
-        Actor a = new Actor();
+        Player a = new Player();
         Deck d = new Deck();
         d.buildDeck();
         Card c = d.deal();
@@ -24,7 +24,7 @@ public class testActor {
 
     @Test
     public void testGetHand() {
-        Actor a = new Actor();
+        Player a = new Player();
         Deck d = new Deck();
         d.buildDeck();
         Card c = d.deal();
@@ -39,7 +39,7 @@ public class testActor {
 
     @Test
     public void testResetHand() {
-        Actor a = new Actor();
+        Player a = new Player();
         Deck d = new Deck();
         d.buildDeck();
         d.shuffle();
@@ -47,6 +47,6 @@ public class testActor {
         a.addCard(c);
         Card v = a.getTop();
         a.resetHand();
-        assertEquals(a.hand.size(),0);
+        assertEquals(a.getHand().size(),0);
     }
 }
