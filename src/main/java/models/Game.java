@@ -88,7 +88,7 @@ public class Game {
         }
     }
     
-        /**
+    /**
      * Created by Natasha
      */
     //public interface Player {
@@ -110,7 +110,7 @@ public class Game {
     //    splitHand.hit(); // Add a card to the splitHand
     //    hit(); // add new card to the current hand
     //    return splitHand;
-    }
+    //}
 
     public void stay(int Person) {
        if (p.Bet > 0) {             //Ensures that the hand cannot progress until the player puts up the ante
