@@ -87,27 +87,32 @@ public class Game {
 
     //Determine winner and add or subtract pot from winnings
     public void getWinner() {
-    //Nawaf should fill this in
+
         //p.TotalMoney = p.TotalMoney + p.Bet;    //feel free to get rid of this when you implement. i just needed it gor a test - Charles
 
         if (p.sumHand() > e.sumHand()){
             if (p.sumHand() < 22){
                 playerStatus = true;
                 dealerStatus = false;
+                p.TotalMoney = p.TotalMoney + p.Bet;
             }
             else{
                 dealerStatus = true;
                 playerStatus = false;
+                p.TotalMoney = p.TotalMoney - p.Bet;
+
             }
         }
         else{
             if (e.sumHand() > 21){
                 playerStatus = true;
                 dealerStatus = false;
+                p.TotalMoney = p.TotalMoney + p.Bet;
             }
             else {
                 dealerStatus = true;
                 playerStatus = false;
+                p.TotalMoney = p.TotalMoney - p.Bet;
             }
         }
 
