@@ -14,7 +14,7 @@ public class Game {
     public Dealer e; //The dealer
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
     //Split hand array
-    public java.util.List<java.util.List<Card>> cols = new SplitList<>();
+    //public java.util.List<java.util.List<Card>> cols = new SplitList<>();
 
     public Game(){
 
@@ -24,18 +24,19 @@ public class Game {
 
         cols.add(new ArrayList<Card>());
         cols.add(new ArrayList<Card>());
+        //another one for split hand array
+        cols.add(new ArrayList<Card>());
         //check to see if those two cards are the same, first rank and  then suit
-        if (ArrayList[0].rank == ArrayList[1].rank){
-            if(ArrayList[0].suit == ArrayList[1].suit){
+        //if (ArrayList[0].rank == ArrayList[1].rank){
+        //    if(ArrayList[0].suit == ArrayList[1].suit){
                 //move the second card to the Split List
-                cols.move(ArrayList<Card>, SplitList<Card>);
-                
-            }
+        //        cols.move(ArrayList<Card>, SplitList<Card>);
+        //    }
             
-        }
+        //}
     }
     //moving card from array list to split list
-    public void move(ArrayList<Card>, SplitList<Card>) {
+    /**public void move(ArrayList<Card>, SplitList<Card>) {
         Card cardToMove = getCard(ArrayList[1]);
         this.removeCardFromCol(ArrayList[1]);
         this.addCardToCol(SplitList[0],cardToMove);
@@ -51,7 +52,7 @@ public class Game {
     //Removing Card from array list
     private void removeCardFromCol(ArrayList<Card>) {
         this.cols.get(ArrayList[1]).remove(this.cols.get(ArrayList[1]).size()-1);
-    }
+    }**/
 
     public void buildDeck() {
         d.buildDeck();
